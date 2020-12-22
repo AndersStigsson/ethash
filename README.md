@@ -2,7 +2,7 @@
 
 # ethash
 
-## This is a fork of the original python ethash
+## This is a fork for python3 implementation of the original python ethash
 I have tried to make it work on Python3, and it gets through to "Prepare full dataset... Could take a few hours, please be patient.", which I am unable to wait for and verify if that works. So, at least the "Prepare cache" seems to be working without breaking anywhere immediately
 
 
