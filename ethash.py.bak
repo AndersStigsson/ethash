@@ -1,15 +1,12 @@
 from __future__ import print_function
 from __future__ import division
 from __future__ import unicode_literals
-from __future__ import absolute_import
 from builtins import str
 from builtins import map
 from builtins import range
 from builtins import object
 from past.utils import old_div
 import sha3, copy, binascii
-from six.moves import map
-from six.moves import range
 
 WORD_BYTES = 4                    # bytes in word
 DATASET_BYTES_INIT = 2**30        # bytes in dataset at genesis
@@ -33,16 +30,20 @@ def encode_int(s):
     return '' if s == 0 else binascii.unhexlify(('0' * (len(a) % 2) + a))[::-1]
 
 def zpad(s, length):
+    print("in zpad")
     return s.zfill(max(0, length-len(s)))
     #return s + '\x00' * max(0, length - len(s))
 
 def serialize_hash(h):
-    return ''.join([str(zpad(encode_int(x), 4)) for x in h])
+    print("in serialize")
+    return ''.join([zpad(encode_int(x), 4) for x in h])
   
 def deserialize_hash(h):
+    print("in deserialize")
     return [decode_int(h[i:i+WORD_BYTES]) for i in range(0, len(h), WORD_BYTES)]
   
 def hash_words(h, sz, x):
+    print("in hash_words where x is %s" % x)
     if isinstance(x, list):
         x = serialize_hash(x)
     y = h(x)
@@ -55,7 +56,7 @@ serialize_dataset = serialize_cache
 
 # sha3 hash function, outputs 64 bytes
 def sha3_512(x):
-    return hash_words(lambda v: sha3.sha3_512(v.encode("utf-8")).digest(), 64, x)
+    return hash_words(lambda v: sha3.sha3_512(v).digest(), 64, x)
 
 def sha3_256(x):
     return hash_words(lambda v: sha3.sha3_256(v).digest(), 32, x)
