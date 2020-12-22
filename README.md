@@ -1,7 +1,11 @@
-##This is a fork of the original python ethash
-I have tried to make it work on Python3, and it gets through to "Prepare full dataset... Could take a few hours, please be patient.", which I am unable to wait for and verify if that works. So, at least the "Prepare cache" seems to be working without breaking anywhere immediately
+
 
 # ethash
+
+## This is a fork of the original python ethash
+I have tried to make it work on Python3, and it gets through to "Prepare full dataset... Could take a few hours, please be patient.", which I am unable to wait for and verify if that works. So, at least the "Prepare cache" seems to be working without breaking anywhere immediately
+
+
 Ethash Python spec code
 
 Ethash (Ethereum Proof-of-Work algorythm) Python spec code from https://github.com/ethereum/wiki/wiki/Ethash with some changes. For those who want to try to understand how Ethereum PoW works without delving into low-level programming.
