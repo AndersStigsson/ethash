@@ -46,7 +46,7 @@ def get_seed(seed, begin, end):
     return seed_hash
 
 def fnv(x, y):
-    return mod(xor(((x * 0x01000193) | 0), y), 2**32)
+    return xor(((x * 0x01000193) | 0), y) % 2**32
 
 def fnv_buffer(a, b):
     bytes_a = bytes(a)
@@ -54,5 +54,13 @@ def fnv_buffer(a, b):
     r = b''
     for i in range(0, len(a), 4):
         r += fnv(bytes_a[i:i+4], bytes_b[i:i+4])
+    return r
+
+def buffer_reverse(a):
+    a_length = len(a)
+    b = bytes(a_length)
+    for i in range(0, a_length):
+        b[i] = a[a_length - i - 1]
+    return b
     
 get_cache_size(1)
